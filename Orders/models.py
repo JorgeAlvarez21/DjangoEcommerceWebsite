@@ -9,5 +9,6 @@ class OrderInformation(models.Model):
     card_exp_date = models.DateTimeField(null=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
         return self.user_fullname, self.transaction_date
