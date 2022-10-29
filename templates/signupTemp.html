@@ -1,0 +1,51 @@
+{% include 'Base.html' %}
+
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'forms-style-pref.css'%}" >
+
+<style>
+    input[type="number"] {
+        width: 7rem;
+    }
+</style>
+
+<body>
+
+    <div class="container h-100 pt-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body px-3 py-5 mx-5 my-3 ">
+                <h3 class="text-uppercase text-center mb-5 ">Create an account</h3>
+                {% load crispy_forms_tags %}
+                <form method="POST" class="needs-validation" novalidate>{% csrf_token %}
+                    <div class = "class="form-floating">
+                        {{customer_info_f|crispy}}
+                        {{customer_verify_f.password_repeat|as_crispy_field}}
+
+
+                            <div class="form-check justify-content-center d-inline-flex">
+                              {{customer_verify_f.agreement|as_crispy_field}}
+                                <label class="form-check-label">  I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a></label>
+                            </div>
+                    </div>
+                    <div class="d-flex justify-content-center pb-3">
+                        <button type="submit" href=""
+                        class="btn btn-success btn-block btn-lg text-light">Register</button>
+                    </div>
+                </form>
+
+
+            <div class="mb-3 row mt-3 text-center">
+                <label for="Account creation">Already have an account? <span><a href="/user-login/" class="mt-2"> Login here</a></span></label>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>

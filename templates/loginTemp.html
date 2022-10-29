@@ -1,0 +1,44 @@
+{% include "Base.html" %}
+
+
+<title>{% block title %} Login to VexeShop {% endblock title %} </title>
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'forms-style-pref.css'%}" >
+
+
+<h4 class="text-center my=5" style="line-height:5.5em;!important"></h4>
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body px-3 py-5 mx-5 my-5">
+                  <h3 class="text-uppercase text-center mb-5">Log into your account</h3>
+
+
+
+                <form method="POST" class="needs-validation" novalidate> {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                    {{login_f|crispy}}
+                    <div class="d-flex justify-content-center">
+                      <button type="submit" href=""
+                              class="btn btn-primary btn-block btn-lg text-light">Login</button>
+                    </div>
+                </form>
+
+                    <div class="mb-3 row mt-3 text-center">
+                    <label for="Account creation">Don't have an account? <span><a href="/user-signup/" class="mt-2"> Sign Up</a></span></label>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>

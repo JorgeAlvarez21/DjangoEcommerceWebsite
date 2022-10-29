@@ -1,0 +1,68 @@
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="bg-dark text-white ">Product Registration</title>
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'add-prod-style.css'%}" >
+    <a class="mt-2 position-absolute  nav-link link-dark px-2 verflow-hidden" href="/homepage/"><img  src="{% static '/navbar-mini-update.png' %}" width="105px" height="30px"/></a>
+    <h2 class=" display-6 bg-dark text-white my-auto" id="prod-reg-title">Product Registration</h2>
+<br>
+<hr>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+
+     <div class="col-6">
+         <div class="w-75">
+         <h4 class="mb-5 "> &emsp; Add new product </h4>
+         <form id="reg-form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{ reg_form|crispy}}
+             </form>
+         <div class="text-end mt-4 me-3">
+            <button class= "btn btn-lg rounded-2 btn-primary mb-5" type="submit" form="reg-form">Submit</button>
+         </div>
+         </div>
+     </div>
+
+    <div class="col-6" style="overflow:scroll!important; height:800px!important;">
+    <h4 class="mb-5"> &emsp; All available products </h4>
+
+                        <table class="table table-light">
+                          <thead class="table-dark">
+                            <th>Product</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>on_discount</th>
+                            <th>Last Modified</th>
+                          </thead>
+                            {% for prod in products %}
+                          <tr>
+                            <td> <p>{{ prod.name }}</p></td>
+                            <td> <p>{{ prod.brand }}</p></td>
+                            <td> <p> {{ prod.category }}</p></td>
+                            <td> <p> ${{ prod.price }}</p></td>
+                          <td> <p> {{ prod.on_discount }}</p></td>
+                          <td> <p> {{ prod.last_modified }}</p></td>
+                          </tr>
+                            {% endfor %}
+                    </table>
+    </div>
+
+    </div>
+
+        </div>
+
+
+
+</div>
+
+</body>
+</html>

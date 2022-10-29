@@ -1,0 +1,27 @@
+{% include 'Base.html' %}
+
+
+<body>
+    {% if request.user.is_authenticated %}
+    <div class="container">
+            <div class="row d-inline-flex">
+            <h3 pt-5 pb-5>Are you sure you want to logout?</h3>
+            <form id="proceedform"  method="POST">{% csrf_token %}
+                <button type="submit" class="btn btn-primary" form="proceedform" name="proceed_to_logout">Yes, Logout</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href = '/homepage/'" > <i class="fa fa-home"></i> Homepage</button>
+            </form>
+
+
+        </div>
+    </div>
+
+
+
+
+
+        {% else %}
+            <h3> Looks like you are already logged out <h3>
+
+    {% endif %}
+
+</body>

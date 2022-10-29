@@ -1,0 +1,177 @@
+{% include "Base.html" %}
+
+{% load crispy_forms_filters %}
+
+<title>Home Site</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'homepage-style.css'%}" >
+<style>
+    input[type="number"] {max-width: 4em};
+    input[type="number"] {max-height: 1em};
+</style>
+<body>
+
+
+
+    <div class="container pt-4">
+        <div class="row flex-wrap justify-content-center">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-5 col-xxl-6 ">
+                <div class="input-group rounded-75">
+
+
+                  <input name="search-bar" form=search-filter class=" form-control rounded" placeholder="  Search " aria-label="Search" aria-describedby="search-addon" />
+
+                </div>
+            </div>
+            <div class="col-auto mt-3 mt-md-0 flex-wrap d-inline-flex">
+            <form method = "GET" id="search-filter">
+                <div class="search-btn me-3">
+                    <button form="search-filter" type="submit"  class="btn btn-light "  aria-expanded="false"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+                </div>
+            </form>
+                <div class= "dropdown">
+                <form method="GET" id="dropdown-btn" action="">
+                  <button form="dropdown-btn" type="button"  class="btn btn-black dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    {% for item in dpd_items %}
+                    <li><button form="dropdown-btn"  class="dropdown-item"  style="font-size:12px;" value="{{ item }}" name="category-btn" type="submit">{{ item }}</button></li>
+                    {% endfor %}
+                </form>
+
+
+                  </ul>
+                </div>
+            </div>
+        </d>
+    </div>
+
+
+<div class="mt-3 mb-5 bg-black w-100" style="height:20px;"></div>
+
+    <div class="container">
+      <div class="row align-items-start ">
+        <div class="col">
+            <div class="btn-group">
+              <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort By
+              </button>
+              <ul class="dropdown-menu">
+                ...
+              </ul>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col d-flex flex-wrap justify-content-end">
+            <div class="btn-group">
+              <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter By
+              </button>
+              <u class="dropdown-menu">
+                ...
+              </u           </div>
+    </div>
+
+      </div>
+    </div>
+
+
+    <div class="container pb-5  align-content-center">
+        <div class="row justify-content-evenly">
+            {% for prod in products_info %}
+            <div class="col-3 col-md-4 gx-auto gy-5 h-100 w-100  mx-xl-3 mx-xxl-4" style="width:280px!important; height:350px!important;">
+                <div class="card h-100 mx-auto">
+                    <div class="card-header bg-black text-white"><p class="my-0 py-0">Price <strong>$ {{ prod.price }}</strong></p></div>
+
+                    <div class="card-img-top w-100 h-50 mx-auto px-0 py-0 overflow-hidden my-2">
+                        <div class="h-100 w-75 mx-auto">
+                            <img src="{{ prod.image.url }}" alt=""  class="card-img-top h-100 w-100 mx-auto">
+                        </div>
+                    </div>
+
+                    <div class="card-body my-auto">
+                        <p class="my-0 py-0">{{ prod.name }}</p>
+
+
+                            {% if request.user.is_authenticated %}
+                            <div class="justify-content-end h-75 w-100 me-2 mb-1 pt-3 d-inline-flex overflow-hidden">
+
+
+
+                                <form class= "pt-3 d-inline-flex justify-content-end" method="POST">{% csrf_token %}
+                                    {{ quantity_f|crispy }}
+
+                                    <button type="submit" name="retrieve_id" value="{{ prod.id }}" class="btn btn-sm btn-dark d-inline me-2 ms-3 mt-1 px-auto d-inline-flex h-50" style="font-size: 12px;">
+                                  Add to Cart
+                                </button>
+
+                                </form>
+
+
+                                </div>
+                            {% else %}
+
+                             <div class="justify-content-end h-100 w-100 me-2 mb-1 pt-3 d-inline-flex overflow-hidden">
+                                 <form class= "pt-3 d-inline-flex justify-content-end" id="login-prompt">
+                                    {{ quantity_f|crispy }}
+
+
+                                <span class="d-inline-block h-75" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Please Log in">
+                                    <button  type="button" class="btn btn-sm btn-primary d-inline me-2 ms-3 px-auto d-inline-flex h-50 disabled" data-bs-title="Dismissible popover" style="font-size: 12px;">
+                                      Add to Cart
+                                    </button>
+                                </span>
+                                     </form>
+                                </div>
+                            {% endif %}
+
+
+
+                    </div>
+                </div>
+
+            </div>
+{% endfor %}
+        </div>
+    </div>
+
+
+
+    <div class="pt-5">
+        <nav aria-label="Page navigation pt-5">
+          <ul class="pagination justify-content-center mt-3">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+</div>
+
+
+<script>
+$(document).ready(function(){
+    $('[data-bs-toggle="popover"]').popover();
+});
+</script>
+
+</body>
+
+
+<footer>
+    <div class="container-fluid bg-black pt-5 mt-5" style="height:300px;">
+
+
+    </div>
+
+
+</footer>

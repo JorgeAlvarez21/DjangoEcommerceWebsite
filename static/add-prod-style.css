@@ -1,0 +1,40 @@
+body {
+    background-color: rgba(224, 220, 230)
+}
+
+#prod-reg-title {
+
+   text-align: center;
+}
+
+.prod-div-c {
+    display:block;
+    font-size:18px;
+}
+
+
+.prod-div-c #reg-form input[type='text']{
+
+    font-size:16px;
+    height:20px;
+    width:15%;
+        margin-left: 3%;
+}
+
+.prod-div-c button[type='submit'] {
+
+    height: 30px;
+    width: 6%;
+    margin-left: 35%;
+    font-size: 16px;
+    border: 1px solid darkgray;
+    border-radius:10px;
+    background-color:lightgreen;
+    margin-top:2%;
+}
+
+
+
+button[type='submit']:focus{
+    outline: auto 5px -webkit-focus-ring-color
+}
