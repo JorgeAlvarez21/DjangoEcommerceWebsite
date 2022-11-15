@@ -8,17 +8,12 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
 
 
-
-
 # class CustomerSignupInformation(forms.Form):
 #     full_name = forms.CharField(max_length=50, required=True, label= "Full name")
 #     email = forms.CharField(max_length=50, required=True, label="email")
 #     password = forms.CharField(max_length=50, required=True, label="Password ")
 #     password_repeat = forms.CharField(max_length=30, required=True, label="Repeat password ")
 #     agreement = forms.BooleanField()
-
-
-
 
 
 class CustomerSignupVerification(forms.Form):
@@ -34,12 +29,11 @@ class CustomerSignupVerification(forms.Form):
 class CustomerSignupInformation(forms.ModelForm):
     global customer_list
 
-
     customer_list = Customers.models.CustomerInformation.objects.all()
     email = forms.EmailField(empty_value=None)
     username = forms.CharField(empty_value=None)
     password = forms.CharField(widget=forms.PasswordInput(), empty_value=None)
-    transaction_id = forms.CharField(widget = forms.HiddenInput())
+    transaction_id = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = CustomerInformation

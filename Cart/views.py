@@ -32,18 +32,11 @@ def shoppingCart(request):
             if prod_id_remove is not None:
                 func_tools.UserCart(user).DeleteProduct(prod_id=prod_id_remove)
             elif prod_id_save is not None:
-              func_tools.UserCart(user).UpdateQuantity(prod_id=prod_id_save, add_qty=new_qty)
+                func_tools.UserCart(user).UpdateQuantity(prod_id=prod_id_save, add_qty=new_qty)
 
         return redirect('shopping-cart')
-
-
-
-
-
-
 
     context = {'cart_items': cart_items, 'products': products, 'total_amount': total_amount,
                'qty_edit_f': qty_edit_form, 'payment_info_f': payment_info_form}
 
     return render(request, 'shoppingCartTemp.html', context)
-

@@ -2,7 +2,8 @@
 
 
 {% load static %}
-
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 <link rel="stylesheet" href="{% static 'forms-style-pref.css'%}" >
 
 <style>
@@ -19,9 +20,10 @@
           <div class="card" style="border-radius: 15px;">
             <div class="card-body px-3 py-5 mx-5 my-3 ">
                 <h3 class="text-uppercase text-center mb-5 ">Create an account</h3>
-                {% load crispy_forms_tags %}
+
                 <form method="POST" class="needs-validation" novalidate>{% csrf_token %}
-                    <div class = "class="form-floating">
+
+                    <div class="form-floating">
                         {{customer_info_f|crispy}}
                         {{customer_verify_f.password_repeat|as_crispy_field}}
 
