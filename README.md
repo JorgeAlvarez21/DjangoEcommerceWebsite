@@ -35,6 +35,7 @@ Though I do not have a solid foundation on UX design and styling, as my main foc
 
 
 ### Screen captures:
+(These might take a few seconds to load)
 - Homepage overview, testing responsiveness.
 <img src="media/demo-docs/demo-homepage.gif">
 - User Registration with functional form validation, creating customer user account.
