@@ -1,8 +1,6 @@
 # ECommerce Website Using Django
 
 
-![AppVeyor](https://img.shields.io/appveyor/build/JorgeAlvarez21/ECommerceApp)
-
 ![Platform](https://img.shields.io/badge/platform-browser%20%7C%20PWA%20%7C%20windows%20%7C%20macos%20%7C%20linux-lightgrey)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/JorgeAlvarez21/ECommerceApp)
